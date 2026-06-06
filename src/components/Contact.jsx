@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { init, send } from '@emailjs/browser';
 import { Mail, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { resumeData } from '../data/resumeData';
 
@@ -39,18 +40,79 @@ export default function Contact() {
   const [formState, setFormState] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+  useEffect(() => {
+    if (publicKey) {
+      init(publicKey);
+    }
+  }, [publicKey]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) return;
-    
+
+    if (!serviceId || !templateId || !publicKey) {
+      setErrorMessage('Email service is not configured. Add EmailJS keys to your .env file.');
+      return;
+    }
+
+    // Strict regex to ensure it's a real-looking email address
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formState.email)) {
+      setErrorMessage('Please enter a validly formatted email address.');
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage('');
+
+    // 1. Verify Email first
+    const verificationKey = import.meta.env.VITE_EMAIL_VERIFICATION_KEY;
+    if (verificationKey) {
+      try {
+        const verifyRes = await fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=${verificationKey}&email=${formState.email}`);
+        const verifyData = await verifyRes.json();
+        
+        if (verifyData.deliverability === 'UNDELIVERABLE' || (verifyData.error && verifyData.error.code)) {
+          setErrorMessage('Please enter valid email address');
+          setIsSubmitting(false);
+          return;
+        }
+      } catch (err) {
+        console.error('Email verification failed:', err);
+        // If verification API fails (CORS, network), we just bypass it and try to send anyway
+      }
+    }
+
+    // 2. Send via EmailJS
+    try {
+      await send(
+        serviceId,
+        templateId,
+        {
+          name: formState.name,
+          email: formState.email,
+          title: formState.subject || 'New message from portfolio',
+          message: formState.message,
+        },
+        publicKey
+      );
+
       setIsSubmitted(true);
       setFormState({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Email send error:', error);
+      // We check if it's an EmailJS specific error and show it, otherwise generic message
+      setErrorMessage(error?.text || 'Unable to send the message right now. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -207,6 +269,9 @@ export default function Contact() {
                     />
                   </div>
 
+                  {errorMessage && (
+                    <p className="text-sm text-rose-400 font-medium">{errorMessage}</p>
+                  )}
                   <button
                     type="submit"
                     disabled={isSubmitting}

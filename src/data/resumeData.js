@@ -18,8 +18,8 @@ export const resumeData = {
   },
   education: [
     {
-      institution: "Vel Tech University",
-      degree: "B.Tech in Computer Science and Engineering (AIML)",
+      institution: "Vel Tech Rangarajan Dr.Sagunthala R&D Institute of Science and Technology, Chennai",
+      degree: "Bachelor of Technology in Computer Science and Engineering",
       duration: "2023 - 2027",
       gradeType: "CGPA",
       grade: "8.9",
@@ -27,20 +27,20 @@ export const resumeData = {
       highlights: ["Specialization in Artificial Intelligence and Machine Learning", "Hands-on engineering projects"]
     },
     {
-      institution: "Sri Chaitanya Junior College",
-      degree: "Board of Intermediate (MPC)",
+      institution: "Sri Chaitanya Junior College, Rajamundry",
+      degree: "Higher Secondary Education (MPC)",
       duration: "2021 - 2023",
-      gradeType: "Marks Percentage",
-      grade: "90.3%",
+      gradeType: "CGPA",
+      grade: "9.0",
       icon: "book-open",
       highlights: ["Mathematics, Physics, Chemistry stream"]
     },
     {
-      institution: "Sasi English Medium School",
-      degree: "Board of Secondary Education",
+      institution: "Sasi E.M High School, Velivennu",
+      degree: "Secondary School Certificate (SSC)",
       duration: "2020 - 2021",
-      gradeType: "Marks Percentage",
-      grade: "99.9%",
+      gradeType: "CGPA",
+      grade: "9.9",
       icon: "school",
       highlights: ["Outstanding Academic record"]
     }
@@ -172,16 +172,16 @@ export const resumeData = {
     },
     {
       title: "ML Engineer Intern",
-      issuer: "Branic Tech Solutions",
+      issuer: "Certified Machine Learning Engineer with hands-on experience in building models.",
       type: "Internship",
-      date: "July 2025 - September 2025",
+      date: "2025",
       image: null
     },
     {
-      title: "DBMS Course - Fundamentals and Advanced Concepts",
-      issuer: "Scaler",
+      title: "DBMS Course - Master the Fundamentals Concepts",
+      issuer: "Completed an in-depth DBMS course covering database design, normalization, SQL queries, and concepts through practical modules and challenges.",
       type: "Tech Course",
-      date: "N/A",
+      date: "2024",
       image: null
     },
     {
@@ -194,12 +194,16 @@ export const resumeData = {
   ],
   achievements: [
     {
-      title: "Computer Vision Model Efficiency",
-      detail: "Reduced model preprocessing/inference and dataset validation timelines by 30% during internship."
+      title: "Project Leadership",
+      detail: "Led my team during project presentations and hackathons."
     },
     {
-      title: "Full-Stack Event Architecture Design",
-      detail: "Successfully developed a campus-wide system to coordinate event tracking, reservations, and registrations."
+      title: "Workshops",
+      detail: "Attended personality development workshop."
+    },
+    {
+      title: "Soft Skills",
+      detail: "Improved communication, confidence, and interpersonal skills."
     }
   ],
   currentlyLearning: [

@@ -138,7 +138,7 @@ export default function Hero() {
             </a>
 
             <a
-              href="/G_Raajidha_Resume.pdf"
+              href="/resume.pdf"
               download="G Raajidha Resume.pdf"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-slate-300 dark:text-slate-50 bg-slate-900/60 dark:bg-slate-800/60 border border-slate-700/50 hover:border-sky-400/50 backdrop-blur-md hover:text-white transition-all duration-300 hover:-translate-y-0.5"
             >

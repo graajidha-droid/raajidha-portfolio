@@ -17,12 +17,12 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## Resume PDF
 
-This project now uses the exact resume file stored at `public/G_Raajidha_Resume.pdf`.
+This project now uses the exact resume file stored at `public/resume.pdf`.
  
  You can keep that file as the canonical resume and access it directly in the browser at:
  
  ```text
- http://localhost:5174/G_Raajidha_Resume.pdf
+ http://localhost:5174/resume.pdf
  ```
  
  The page download button uses this file as the resume source.

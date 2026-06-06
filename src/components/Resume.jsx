@@ -9,7 +9,7 @@ export default function Resume() {
 
           <div className="flex items-center gap-3">
             <a
-              href="/G_Raajidha_Resume.pdf"
+              href="/resume.pdf"
               target="_blank"
               rel="noreferrer"
               className="px-3 py-2 bg-slate-800/60 hover:bg-slate-700 rounded-md text-sm font-semibold"
@@ -17,7 +17,7 @@ export default function Resume() {
               Open PDF
             </a>
             <a
-              href="/G_Raajidha_Resume.pdf"
+              href="/resume.pdf"
               download="G Raajidha Resume.pdf"
               className="px-3 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-md text-sm font-semibold"
             >
@@ -28,7 +28,7 @@ export default function Resume() {
 
         <div className="border border-slate-700 rounded-lg overflow-hidden" style={{ height: 800 }}>
           <object
-            data="/G_Raajidha_Resume.pdf"
+            data="/resume.pdf"
             type="application/pdf"
             className="w-full h-full"
           >
@@ -39,7 +39,7 @@ export default function Resume() {
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <a
-                  href="/G_Raajidha_Resume.pdf"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                   className="px-4 py-2 bg-slate-800/70 hover:bg-slate-700 rounded-md text-sm font-semibold"
@@ -47,7 +47,7 @@ export default function Resume() {
                   Open Resume
                 </a>
                 <a
-                  href="/G_Raajidha_Resume.pdf"
+                  href="/resume.pdf"
                   download="G Raajidha Resume.pdf"
                   className="px-4 py-2 bg-sky-500 hover:bg-sky-400 text-white rounded-md text-sm font-semibold"
                 >
