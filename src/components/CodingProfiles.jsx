@@ -117,11 +117,11 @@ export default function CodingProfiles() {
   if (!profiles.length) return null;
 
   return (
-    <section id="profiles" className="py-20 relative">
+    <section id="profiles" className="py-16 sm:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             Coding <span className="bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent">Profiles</span>
           </h2>
@@ -129,40 +129,44 @@ export default function CodingProfiles() {
         </div>
 
         {/* Profiles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {profiles.map((profile) => {
             const loading = isProfileLoading(profile.id);
             return (
-              <div key={profile.id} className="glass-card p-6 rounded-2xl border border-white/10 shadow-xl hover:shadow-2xl hover:border-sky-400/50 hover:-translate-y-2 transition-all duration-300 group">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sky-400 shadow-inner group-hover:scale-110 group-hover:shadow-sky-400/20 transition-all duration-300">
+              <div key={profile.id} className="glass-card p-5 sm:p-6 rounded-2xl border border-white/10 shadow-xl hover:shadow-2xl hover:border-sky-400/50 hover:-translate-y-2 transition-all duration-300 group">
+                <div className="flex justify-between items-start mb-4 sm:mb-6">
+                  <div className="p-3 sm:p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-sky-400 shadow-inner group-hover:scale-110 group-hover:shadow-sky-400/20 transition-all duration-300">
                     {getIcon(profile.id)}
                   </div>
-                  <div className="flex items-center gap-3">
-                    {/* Live sync badge removed for cleaner UI */}
-                    <a 
-                      href={profile.link} 
-                      target="_blank" 
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <a
+                      href={profile.link}
+                      target="_blank"
                       rel="noreferrer"
-                      className="p-2.5 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-sky-500 shadow-md transition-colors"
+                      className="p-2 sm:p-2.5 rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-sky-500 shadow-md transition-all duration-300"
                       aria-label={`Open ${profile.platform} Profile`}
                     >
-                      <ExternalLink className="h-4.5 w-4.5" />
+                      <ExternalLink className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
                     </a>
                   </div>
                 </div>
-                
-                <h3 className="text-2xl font-bold text-slate-50 group-hover:text-sky-400 transition-colors">{profile.platform}</h3>
-                <p className="text-sm text-slate-400 mt-1 mb-6 font-mono font-semibold tracking-wider">@{profile.username}</p>
-                
-                <div className="space-y-4 pt-5 border-t border-white/10">
+
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-50 group-hover:text-sky-400 transition-colors">{profile.platform}</h3>
+                  <div className="mt-2 inline-flex items-center gap-2 px-3 py-1.5 bg-sky-400/10 border border-sky-400/30 rounded-full">
+                    <span className="text-xs sm:text-sm text-sky-400 font-bold">@</span>
+                    <p className="text-xs sm:text-sm text-sky-300 font-mono font-semibold tracking-wider">{profile.username}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3 sm:space-y-4 pt-4 sm:pt-5 border-t border-white/10">
                   {profile.stats.map((stat, i) => (
-                    <div key={i} className="flex justify-between items-center">
-                      <span className="text-sm font-semibold uppercase tracking-wider text-slate-400">{stat.label}</span>
+                    <div key={i} className="flex justify-between items-center gap-3">
+                      <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-400">{stat.label}</span>
                       {loading ? (
                         <span className="h-5 w-16 bg-slate-800 rounded animate-pulse" />
                       ) : (
-                        <span className="text-sm font-extrabold text-sky-400 bg-sky-400/10 border border-sky-400/20 px-3 py-1 rounded-md transition-all duration-300">
+                        <span className="text-xs sm:text-sm font-extrabold text-sky-400 bg-sky-400/10 border border-sky-400/20 px-2.5 sm:px-3 py-1 rounded-md transition-all duration-300 whitespace-nowrap">
                           {getLiveValue(profile.id, stat.label, stat.value)}
                         </span>
                       )}

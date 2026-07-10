@@ -69,157 +69,151 @@ export default function Hero() {
   }, [typedText, isDeleting, currentRoleIndex, subroles]);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden relative">
-      {/* Background Radial Glow Ambient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-sky-500/10 blur-[100px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-purple-600/10 blur-[100px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '2s' }} />
+    <section id="home" className="min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-12 sm:pb-16 overflow-hidden relative">
+      {/* Background Radial Glow Ambient Orbs - more subtle */}
+      <div className="absolute top-1/4 left-1/4 w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] rounded-full bg-sky-500/5 blur-[100px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[350px] sm:w-[450px] h-[350px] sm:h-[450px] rounded-full bg-purple-600/5 blur-[100px] pointer-events-none animate-pulse-slow" style={{ animationDelay: '2s' }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        {/* Hero Copy (8cols desktop) */}
-        <div className="lg:col-span-7 space-y-6 text-left">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col items-center gap-10 sm:gap-14 text-center">
+        {/* Profile Image - Much larger */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
+          className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
+        >
+          {/* Background glowing rings */}
+          <div className="absolute inset-0 rounded-3xl border-2 border-sky-400/20 animate-spin-slow pointer-events-none scale-105" />
+          <div className="absolute inset-0 rounded-3xl border-2 border-dashed border-purple-500/15 animate-spin-slow pointer-events-none scale-110" style={{ animationDirection: 'reverse' }} />
 
+          {/* Profile image with Glassmorphism wrap */}
+          <div className="absolute inset-0 rounded-3xl overflow-hidden glass-card p-4 shadow-2xl hover:scale-[1.01] transition-transform duration-500">
+            <img
+              src={profilePic}
+              alt={name}
+              className="w-full h-full object-cover rounded-2xl grayscale-[15%] hover:grayscale-0 transition-all duration-500"
+            />
+          </div>
+        </motion.div>
 
-          <motion.h1
+        {/* Hero Copy */}
+        <div className="space-y-4 sm:space-y-6 max-w-3xl">
+          {/* Greeting */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-5xl sm:text-7xl font-extrabold tracking-tight"
+            className="text-lg sm:text-2xl font-semibold text-slate-300"
           >
-            Hi, I'm <br />
-            <span className="bg-gradient-to-r from-sky-400 via-purple-400 to-sky-400 bg-clip-text text-transparent drop-shadow-sm">
+            Hello.
+          </motion.div>
+
+          {/* Name */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight"
+          >
+            <span className="block text-slate-100">I'm</span>
+            <span className="block bg-gradient-to-r from-sky-400 via-purple-400 to-sky-400 bg-clip-text text-transparent drop-shadow-sm">
               {name}
             </span>
           </motion.h1>
 
+          {/* Title/Subtitle */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl sm:text-2xl font-bold text-sky-300 tracking-wide mt-2"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="text-xl sm:text-3xl font-bold text-slate-200 leading-relaxed"
           >
-            AI/ML Enthusiast | Full Stack Developer
+            {title}
           </motion.h2>
 
-          {/* Typing Subheading */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="h-10 text-xl sm:text-2xl font-semibold text-slate-300 flex items-center"
-          >
-            <span>Specializing in&nbsp;</span>
-            <span className="text-sky-400 typing-caret pr-1 font-mono font-bold bg-sky-400/5 px-2 rounded-md">
-              {typedText}
-            </span>
-          </motion.div>
-
+          {/* Profile Summary */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed font-sans"
+            className="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl leading-relaxed font-sans mx-auto"
           >
             {profileSummary}
           </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap gap-4 pt-2"
-          >
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-white bg-sky-500 hover:bg-sky-400 shadow-xl hover:shadow-sky-400/20 hover:-translate-y-0.5 transition-all duration-300"
-            >
-              View Projects
-              <ArrowRight className="h-5 w-5" />
-            </a>
-
-            <a
-              href="/resume.pdf"
-              download="G Raajidha Resume.pdf"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-slate-300 dark:text-slate-50 bg-slate-900/60 dark:bg-slate-800/60 border border-slate-700/50 hover:border-sky-400/50 backdrop-blur-md hover:text-white transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <Download className="h-5 w-5 text-sky-400" />
-              Download Resume
-            </a>
-
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-bold text-slate-400 dark:text-slate-300 bg-transparent hover:text-white transition-colors duration-300"
-            >
-              Contact Me
-            </a>
-          </motion.div>
-
-          {/* Social Badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.75 }}
-            className="flex items-center gap-4 pt-4"
-          >
-            <a
-              href={github}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2.5 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300"
-              aria-label="GitHub Profile"
-            >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2.5 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300"
-              aria-label="LinkedIn Profile"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href={`mailto:${email}`}
-              className="p-2.5 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300"
-              aria-label="Send Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
-            <a
-              href={`tel:${phone.replace(/\s+/g, '')}`}
-              className="p-2.5 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300"
-              aria-label="Call Mobile"
-            >
-              <Phone className="h-5 w-5" />
-            </a>
-          </motion.div>
         </div>
 
-        {/* Hero Photo / Avatar (5cols desktop) */}
-        <div className="lg:col-span-5 flex justify-center items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, cubicBezier: [0.16, 1, 0.3, 1] }}
-            className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96"
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 pt-6 justify-center"
+        >
+          <a
+            href="#projects"
+            className="inline-flex items-center justify-center gap-2 px-7 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-bold text-white bg-sky-500 hover:bg-sky-400 shadow-xl hover:shadow-sky-400/20 hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
           >
-            {/* Background glowing rings */}
-            <div className="absolute inset-0 rounded-full border border-sky-400/25 animate-spin-slow pointer-events-none scale-105" />
-            <div className="absolute inset-0 rounded-full border border-dashed border-purple-500/25 animate-spin-slow pointer-events-none scale-110" style={{ animationDirection: 'reverse' }} />
-            <div className="absolute inset-2 rounded-full bg-gradient-to-tr from-sky-400 via-purple-500 to-sky-400 blur-2xl opacity-20 animate-pulse-slow pointer-events-none" />
+            View Projects
+            <ArrowRight className="h-6 w-6" />
+          </a>
 
-            {/* Profile image with Glassmorphism wrap */}
-            <div className="absolute inset-0 rounded-3xl overflow-hidden glass-card p-3 shadow-2xl hover:scale-[1.02] transition-transform duration-500">
-              <img
-                src={profilePic}
-                alt={name}
-                className="w-full h-full object-cover rounded-2xl grayscale-[20%] hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
+          <a
+            href={`${import.meta.env.BASE_URL}resume.pdf`}
+            download="G Raajidha Resume.pdf"
+            className="inline-flex items-center justify-center gap-2 px-7 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-bold text-slate-200 dark:text-slate-50 bg-slate-900/60 dark:bg-slate-800/60 border border-slate-700/50 hover:border-sky-400/50 backdrop-blur-md hover:text-white transition-all duration-300 hover:-translate-y-0.5 w-full sm:w-auto"
+          >
+            <Download className="h-6 w-6 text-sky-400" />
+            Resume
+          </a>
 
-          </motion.div>
-        </div>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center gap-2 px-7 sm:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-bold text-slate-300 dark:text-slate-300 bg-transparent border border-slate-700/50 hover:border-sky-400/50 hover:text-white transition-colors duration-300 w-full sm:w-auto"
+          >
+            Get In Touch
+          </a>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
+          className="flex items-center justify-center gap-4 pt-8 flex-wrap"
+        >
+          <a
+            href={github}
+            target="_blank"
+            rel="noreferrer"
+            className="p-3 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300 hover:scale-110"
+            aria-label="GitHub Profile"
+          >
+            <Github className="h-6 w-6" />
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="p-3 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300 hover:scale-110"
+            aria-label="LinkedIn Profile"
+          >
+            <Linkedin className="h-6 w-6" />
+          </a>
+          <a
+            href={`mailto:${email}`}
+            className="p-3 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300 hover:scale-110"
+            aria-label="Send Email"
+          >
+            <Mail className="h-6 w-6" />
+          </a>
+          <a
+            href={`tel:${phone.replace(/\s+/g, '')}`}
+            className="p-3 rounded-full bg-slate-900/40 border border-slate-800 hover:border-sky-400 hover:text-sky-400 transition-all duration-300 hover:scale-110"
+            aria-label="Call Mobile"
+          >
+            <Phone className="h-6 w-6" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

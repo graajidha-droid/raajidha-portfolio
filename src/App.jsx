@@ -157,71 +157,65 @@ export default function App() {
           <footer className={`border-t py-12 mt-20 transition-all ${
             isDark ? 'bg-slate-800/60 border-slate-900/60 text-slate-500' : 'bg-slate-100 border-slate-200 text-slate-500'
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
-              
-              {/* Left branding */}
-              <div>
-                <span className="text-lg font-extrabold tracking-widest bg-gradient-to-r from-sky-400 to-purple-500 bg-clip-text text-transparent block">
-                  GADDE RAAJIDHA
-                </span>
-                <span className="text-xs font-semibold text-slate-400 block mt-1">
-                  Computer Science Student & AIML Engineer
-                </span>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col gap-8">
+                {/* Top section: branding and social icons */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                  {/* Left branding */}
+                  <div>
+                    <span className="text-lg font-extrabold tracking-widest bg-gradient-to-r from-sky-400 to-purple-500 bg-clip-text text-transparent block">
+                      GADDE RAAJIDHA
+                    </span>
+                    <span className="text-xs font-semibold text-slate-400 block mt-1">
+                      Computer Science Student & AIML Engineer
+                    </span>
+                  </div>
+
+                  {/* Social networking icons - centered on mobile, right-aligned on desktop */}
+                  <div className="flex justify-center sm:justify-end gap-3">
+                    <a
+                      href={resumeData.personalInfo.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
+                      aria-label="GitHub Icon"
+                    >
+                      <Github className="h-5 w-5 text-slate-400" />
+                    </a>
+                    <a
+                      href={resumeData.personalInfo.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
+                      aria-label="LinkedIn Icon"
+                    >
+                      <Linkedin className="h-5 w-5 text-slate-400" />
+                    </a>
+                    <a
+                      href={resumeData.personalInfo.leetcode}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
+                      aria-label="LeetCode Icon"
+                    >
+                      <Leetcode className="h-5 w-5 text-slate-400" />
+                    </a>
+                    <a
+                      href={`mailto:${resumeData.personalInfo.email}`}
+                      className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
+                      aria-label="Mail Icon"
+                    >
+                      <Mail className="h-5 w-5 text-slate-400" />
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              {/* Middle quick nav anchors */}
-              <div className="flex justify-center gap-6 text-sm font-semibold flex-wrap">
-                <a href="#home" className="hover:text-sky-400 transition-colors duration-300">Home</a>
-                <a href="#about" className="hover:text-sky-400 transition-colors duration-300">About</a>
-                <a href="#skills" className="hover:text-sky-400 transition-colors duration-300">Skills</a>
-                <a href="#projects" className="hover:text-sky-400 transition-colors duration-300">Projects</a>
-                <a href="#contact" className="hover:text-sky-400 transition-colors duration-300">Contact</a>
+              {/* Bottom copyright notice */}
+              <div className="flex flex-col items-center gap-2 mt-8 pt-8 border-t border-slate-200/10 dark:border-white/5 text-[14px] font-medium text-slate-400 tracking-wide pb-4">
+                <span>&copy; Developed and Designed by Gadde Raajidha</span>
+                <span className="text-[12px] opacity-80">@{currentYear}</span>
               </div>
-
-              {/* Right social networking icons */}
-              <div className="flex justify-center md:justify-end gap-4">
-                <a
-                  href={resumeData.personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
-                  aria-label="GitHub Icon"
-                >
-                  <Github className="h-4.5 w-4.5 text-slate-400" />
-                </a>
-                <a
-                  href={resumeData.personalInfo.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
-                  aria-label="LinkedIn Icon"
-                >
-                  <Linkedin className="h-4.5 w-4.5 text-slate-400" />
-                </a>
-                <a
-                  href={resumeData.personalInfo.leetcode}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="p-2 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
-                  aria-label="LeetCode Icon"
-                >
-                  <Leetcode className="h-4.5 w-4.5 text-slate-400" />
-                </a>
-                <a
-                  href={`mailto:${resumeData.personalInfo.email}`}
-                  className="p-2 rounded-full border border-slate-200/20 dark:border-white/10 bg-slate-900/10 dark:bg-slate-900/40 hover:text-sky-400 hover:border-sky-400/50 transition-all duration-300"
-                  aria-label="Mail Icon"
-                >
-                  <Mail className="h-4.5 w-4.5 text-slate-400" />
-                </a>
-              </div>
-
-            </div>
-
-            {/* Bottom copyright notice */}
-            <div className="flex flex-col items-center gap-2 mt-8 pt-8 border-t border-slate-200/10 dark:border-white/5 text-[14px] font-medium text-slate-400 tracking-wide pb-4">
-              <span>&copy; Developed and Designed by Gadde Raajidha</span>
-              <span className="text-[12px] opacity-80">@{currentYear}</span>
             </div>
           </footer>
         </>

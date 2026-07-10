@@ -78,7 +78,9 @@ export default function Contact() {
         const verifyRes = await fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=${verificationKey}&email=${formState.email}`);
         const verifyData = await verifyRes.json();
         
-        if (verifyData.deliverability === 'UNDELIVERABLE' || (verifyData.error && verifyData.error.code)) {
+        if (verifyData.error && verifyData.error.code) {
+          console.warn('Email verification API error:', verifyData.error.message);
+        } else if (verifyData.deliverability === 'UNDELIVERABLE') {
           setErrorMessage('Please enter valid email address');
           setIsSubmitting(false);
           return;
@@ -120,78 +122,78 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-12 sm:py-16 lg:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
             Get In <span className="bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <div className="h-1.5 w-16 bg-sky-400 rounded-full mx-auto mt-3" />
+          <div className="h-1 lg:h-1.5 w-12 lg:w-16 bg-sky-400 rounded-full mx-auto mt-2 lg:mt-3" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+
           {/* Contact Details Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
-            <div className="text-left space-y-6">
-              <h3 className="text-2xl font-bold text-slate-50">Let's build something together!</h3>
-              <p className="text-sm text-slate-400 leading-relaxed font-sans">
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 lg:space-y-8">
+            <div className="text-left space-y-4 lg:space-y-6">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-50">Let's build something together!</h3>
+              <p className="text-xs lg:text-sm text-slate-400 leading-relaxed font-sans">
                 I am actively seeking internship opportunities starting from my final year of engineering. If you have an opening in Software Engineering, AI/ML, Full-Stack, or Product Engineering, I would love to connect and contribute to your team.
               </p>
             </div>
 
             {/* Quick Details Cards */}
-            <div className="space-y-4 text-left">
+            <div className="space-y-3 lg:space-y-4 text-left">
               <a
                 href={`mailto:${email}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-sky-400/30 transition-all duration-300 group"
+                className="flex items-center gap-3 lg:gap-4 p-3 lg:p-4 rounded-xl lg:rounded-2xl bg-slate-900/40 border border-white/5 hover:border-sky-400/30 transition-all duration-300 group"
               >
-                <div className="p-3 rounded-xl bg-slate-800 border border-slate-800 text-sky-400 group-hover:scale-110 transition-transform duration-300">
-                  <Mail className="h-5 w-5" />
+                <div className="flex-shrink-0 p-2 lg:p-3 rounded-lg lg:rounded-xl bg-slate-800 border border-slate-800 text-sky-400 group-hover:scale-110 transition-transform duration-300">
+                  <Mail className="h-4 lg:h-5 w-4 lg:w-5" />
                 </div>
-                <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">Email Address</span>
-                  <span className="text-sm font-bold text-slate-50 group-hover:text-sky-400 transition-colors duration-300">{email}</span>
+                <div className="min-w-0">
+                  <span className="text-[9px] lg:text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">Email Address</span>
+                  <span className="text-xs lg:text-sm font-bold text-slate-50 group-hover:text-sky-400 transition-colors duration-300 break-all">{email}</span>
                 </div>
               </a>
 
               <a
                 href={`tel:${phone.replace(/\s+/g, '')}`}
-                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-sky-400/30 transition-all duration-300 group"
+                className="flex items-center gap-3 lg:gap-4 p-3 lg:p-4 rounded-xl lg:rounded-2xl bg-slate-900/40 border border-white/5 hover:border-sky-400/30 transition-all duration-300 group"
               >
-                <div className="p-3 rounded-xl bg-slate-800 border border-slate-800 text-sky-400 group-hover:scale-110 transition-transform duration-300">
-                  <Phone className="h-5 w-5" />
+                <div className="flex-shrink-0 p-2 lg:p-3 rounded-lg lg:rounded-xl bg-slate-800 border border-slate-800 text-sky-400 group-hover:scale-110 transition-transform duration-300">
+                  <Phone className="h-4 lg:h-5 w-4 lg:w-5" />
                 </div>
-                <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">Phone Number</span>
-                  <span className="text-sm font-bold text-slate-50 group-hover:text-sky-400 transition-colors duration-300">{phone}</span>
+                <div className="min-w-0">
+                  <span className="text-[9px] lg:text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">Phone Number</span>
+                  <span className="text-xs lg:text-sm font-bold text-slate-50 group-hover:text-sky-400 transition-colors duration-300">{phone}</span>
                 </div>
               </a>
 
             </div>
 
             {/* Social handles */}
-            <div className="flex items-center gap-4 pt-4 text-left justify-start">
+            <div className="flex items-center gap-2 pt-2 lg:pt-4 text-left justify-start flex-wrap">
               <a
                 href={github}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white hover:border-sky-400 transition-all duration-300"
+                className="flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white hover:border-sky-400 transition-all duration-300"
               >
-                <Github className="h-4.5 w-4.5" />
-                <span>@{githubUsername}</span>
+                <Github className="h-3.5 lg:h-4.5 w-3.5 lg:w-4.5" />
+                <span className="hidden sm:inline">@{githubUsername}</span>
               </a>
 
               <a
                 href={linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white hover:border-sky-400 transition-all duration-300"
+                className="flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-2 lg:py-2.5 rounded-lg lg:rounded-xl bg-slate-800 border border-slate-800 text-xs font-bold text-slate-300 hover:text-white hover:border-sky-400 transition-all duration-300"
               >
-                <Linkedin className="h-4.5 w-4.5" />
-                <span>@{linkedinUsername}</span>
+                <Linkedin className="h-3.5 lg:h-4.5 w-3.5 lg:w-4.5" />
+                <span className="hidden sm:inline">@{linkedinUsername}</span>
               </a>
             </div>
 
@@ -199,21 +201,21 @@ export default function Contact() {
 
           {/* Form submission column */}
           <div className="lg:col-span-7">
-            <div className="glass-card p-6 sm:p-8 rounded-2xl border border-white/5 text-left shadow-2xl h-full flex flex-col justify-center">
-              
+            <div className="glass-card p-4 sm:p-6 lg:p-8 rounded-xl lg:rounded-2xl border border-white/5 text-left shadow-2xl h-full flex flex-col justify-center">
+
               {isSubmitted ? (
-                <div className="text-center py-12 space-y-4">
+                <div className="text-center py-8 sm:py-12 space-y-4">
                   <div className="inline-flex p-3 rounded-full bg-emerald-500/10 text-emerald-500 mb-2">
-                    <CheckCircle2 className="h-10 w-10 animate-bounce" />
+                    <CheckCircle2 className="h-8 sm:h-10 w-8 sm:w-10 animate-bounce" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-50">Message Sent!</h3>
-                  <p className="text-sm text-slate-400 max-w-sm mx-auto font-sans leading-relaxed">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-50">Message Sent!</h3>
+                  <p className="text-xs sm:text-sm text-slate-400 max-w-sm mx-auto font-sans leading-relaxed">
                     Thank you for reaching out, Gadde. Your message has been submitted. I will respond to you shortly!
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-xs font-bold uppercase tracking-wider text-slate-400">Full Name</label>
                       <input
@@ -223,7 +225,7 @@ export default function Contact() {
                         required
                         value={formState.name}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-xl bg-slate-800/60 border border-slate-800 text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
+                        className="w-full px-3 lg:px-5 py-2.5 lg:py-4 rounded-lg lg:rounded-xl bg-slate-800/60 border border-slate-800 text-xs lg:text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
                         placeholder="Your Name"
                       />
                     </div>
@@ -236,7 +238,7 @@ export default function Contact() {
                         required
                         value={formState.email}
                         onChange={handleChange}
-                        className="w-full px-5 py-4 rounded-xl bg-slate-800/60 border border-slate-800 text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
+                        className="w-full px-3 lg:px-5 py-2.5 lg:py-4 rounded-lg lg:rounded-xl bg-slate-800/60 border border-slate-800 text-xs lg:text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -250,7 +252,7 @@ export default function Contact() {
                       id="subject"
                       value={formState.subject}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl bg-slate-800/60 border border-slate-800 text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
+                      className="w-full px-3 lg:px-5 py-2.5 lg:py-4 rounded-lg lg:rounded-xl bg-slate-800/60 border border-slate-800 text-xs lg:text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
                       placeholder="Opportunity / Collaboration"
                     />
                   </div>
@@ -260,25 +262,25 @@ export default function Contact() {
                     <textarea
                       name="message"
                       id="message"
-                      rows={6}
+                      rows={5}
                       required
                       value={formState.message}
                       onChange={handleChange}
-                      className="w-full px-5 py-4 rounded-xl bg-slate-800/60 border border-slate-800 text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans"
+                      className="w-full px-3 lg:px-5 py-2.5 lg:py-4 rounded-lg lg:rounded-xl bg-slate-800/60 border border-slate-800 text-xs lg:text-sm text-slate-50 focus:outline-none focus:border-sky-400 transition-all font-sans resize-none"
                       placeholder="Hello, I'd like to talk about an opportunity..."
                     />
                   </div>
 
                   {errorMessage && (
-                    <p className="text-sm text-rose-400 font-medium">{errorMessage}</p>
+                    <p className="text-xs lg:text-sm text-rose-400 font-medium">{errorMessage}</p>
                   )}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white bg-sky-500 hover:bg-sky-400 disabled:bg-sky-700 disabled:opacity-50 transition-all duration-300 shadow-xl hover:shadow-sky-500/10"
+                    className="w-full inline-flex justify-center items-center gap-2 px-6 py-2.5 lg:py-3.5 rounded-lg lg:rounded-xl text-xs lg:text-sm font-bold text-white bg-sky-500 hover:bg-sky-400 disabled:bg-sky-700 disabled:opacity-50 transition-all duration-300 shadow-xl hover:shadow-sky-500/10"
                   >
                     {isSubmitting ? 'Submitting...' : 'Send Message'}
-                    <Send className="h-4.5 w-4.5" />
+                    <Send className="h-4 lg:h-4.5 w-4 lg:w-4.5" />
                   </button>
                 </form>
               )}

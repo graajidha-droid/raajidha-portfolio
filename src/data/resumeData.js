@@ -7,7 +7,7 @@ export const resumeData = {
     specialization: "Artificial Intelligence & Machine Learning",
     subroles: ["AI/ML Specialist", "Full-Stack Developer", "Software Engineer"],
     email: "raajidhag@gmail.com",
-    phone: "+91 955342669",
+    phone: "+91 9553432669",
     location: "Rajahmundry, Andhra Pradesh, India",
     github: "https://github.com/graajidha-droid",
     linkedin: "https://www.linkedin.com/in/raajidha-gadde",
@@ -96,6 +96,7 @@ export const resumeData = {
         "Optimized image scaling and preprocessing workflow",
         "30% reduction in validation check times"
       ],
+      image: "/projects/wild-animal-detection.png",
       github: "https://github.com/graajidha-droid/Wild-Animal-Detection",
       live: null
     },
@@ -112,6 +113,7 @@ export const resumeData = {
         "Secure student authentication",
         "Exportable PDF reports for results analysis"
       ],
+      image: "/projects/quiz-engine.png",
       github: "https://github.com/graajidha-droid/Fullstack/tree/main/Automated%20Quiz%20Engine%20with%20PDF%20Certification%20Generation",
       live: null
     },
@@ -128,6 +130,7 @@ export const resumeData = {
         "Event creation, read, update, and delete (CRUD) capabilities",
         "Responsive, modern layout tailored for campus users"
       ],
+      image: "/projects/smart-campus.png",
       github: "https://github.com/graajidha-droid/Fullstack/tree/main/SMART%20CAMPUS%20EVENT%20MANAGEMENT%20AND%20REGISTRATION%20SYSTEM%20USING%20SPRING%20BOOT",
       live: null
     }

@@ -143,4 +143,27 @@
   }
   .text-3xl { font-size: 1.5rem; }
   .text-4xl { font-size: 1.75rem; }
+  body { font-size: 14px; }
+
+  /* Ensure footer icons are properly aligned on mobile */
+  footer .flex { flex-wrap: wrap; }
 }
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 768px) {
+  .max-w-7xl {
+    padding: 0 1rem;
+  }
+
+  /* Adjust contact form spacing on tablet and below */
+  .space-y-5 > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Better mobile nav spacing */
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+

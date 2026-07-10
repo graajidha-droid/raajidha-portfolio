@@ -65,7 +65,7 @@ export default function About() {
             </p>
 
             <p className="text-slate-400 leading-relaxed font-sans text-base">
-              I am highly passionate about product development and software engineering. I love building smart systems that bridge computer vision models and full-stack web applications. Located in <strong>{location}</strong>, I focus on writing clean, modular, and optimized code that solves real-world challenges.
+              I am highly passionate about product development and software engineering. I love building smart systems that bridge computer vision models and full-stack web applications. I focus on writing clean, modular, and optimized code that solves real-world challenges.
             </p>
 
             {/* Strengths / Interests Grid */}

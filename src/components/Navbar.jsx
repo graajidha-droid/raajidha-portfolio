@@ -30,23 +30,34 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-nav py-3 shadow-xl' : 'bg-transparent py-5'
+        scrolled ? 'glass-nav py-3 shadow-xl' : 'bg-transparent py-4 sm:py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-12">
-          {/* Logo / Branding */}
-          <div className="flex-shrink-0">
+        <div className="flex items-center justify-between h-auto sm:h-12 gap-4">
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 -ml-2 rounded-md text-slate-400 hover:text-sky-400 focus:outline-none transition-colors duration-300"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
+          {/* Logo / Branding - Centered on mobile, left on desktop */}
+          <div className="flex-1 text-center lg:text-left lg:flex-none">
             <a
               href="#home"
-              className="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 inline-block font-sans"
+              className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-sky-400 via-purple-500 to-sky-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 inline-block font-sans whitespace-nowrap"
             >
               PORTFOLIO
             </a>
           </div>
 
           {/* Desktop Nav Items */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
             <div className="flex items-baseline space-x-6">
               {navLinks.map((link) => (
                 <a
@@ -58,27 +69,16 @@ export default function Navbar() {
                 </a>
               ))}
             </div>
-
-            {/* Actions */}
-            <div className="flex items-center space-x-4 pl-4 border-l border-slate-200/20">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-purple-600 hover:from-sky-400 hover:to-purple-500 rounded-full shadow-lg hover:shadow-sky-400/20 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                Hire Me
-              </a>
-            </div>
           </div>
 
-          {/* Mobile Menu & Theme Button */}
-          <div className="flex items-center space-x-3 lg:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-md text-slate-400 hover:text-sky-400 focus:outline-none transition-colors duration-300"
-              aria-label="Toggle Menu"
+          {/* Desktop Hire Me Button */}
+          <div className="hidden lg:flex items-center">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-purple-600 hover:from-sky-400 hover:to-purple-500 rounded-full shadow-lg hover:shadow-sky-400/20 transition-all duration-300 hover:-translate-y-0.5"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+              Hire Me
+            </a>
           </div>
         </div>
       </div>
